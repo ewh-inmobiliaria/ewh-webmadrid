@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="Exclusive World Home: viviendas exclusivas en Madrid. Compra, venta y alquiler en Salamanca, Retiro, Chamberí y Chamartín.">
+  <title>Exclusive World Home | Inmobiliaria en Madrid</title>
+  <style>
+    :root {
+      --green: #173d32;
+      --green2: #245746;
+      --gold: #c6a66b;
+      --cream: #f7f5ef;
+      --ink: #202822;
+      --muted: #737a73;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .wrap { width: min(1160px, 90%); margin: auto; }
+    header {
+      background: var(--green);
+      color: white;
+      border-bottom: 1px solid #ffffff25;
+    }
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { line-height: 1.2; }
+    .brand strong {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 29px;
+      letter-spacing: 4px;
+    }
+    .brand span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+    nav { display: flex; flex-wrap: wrap; gap: 23px; font-size: 13px; }
+    nav a:hover { color: var(--gold); }
+    .hero {
+      color: white;
+      background:
+        linear-gradient(90deg, #102d26ed 0%, #102d26b0 53%, #102d2630 100%),
+        url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=85") center/cover;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content { max-width: 690px; padding: 85px 0; }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    h1 { font-size: clamp(42px, 6vw, 70px); line-height: 1.08; margin: 18px 0; }
+    .hero p { color: #eee9df; max-width: 530px; }
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      padding: 12px 21px;
+      cursor: pointer;
+      background: var(--gold);
+      color: #172b23;
+      font-weight: bold;
+      font-size: 13px;
+      text-align: center;
+    }
+    .btn:hover { filter: brightness(.94); }
+    .btn-outline { background: transparent; color: white; margin-left: 8px; }
+    .search-area { margin-top: -38px; position: relative; }
+    .search {
+      background: white;
+      box-shadow: 0 10px 35px #142a201c;
+      padding: 23px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 13px;
+      align-items: end;
+    }
+    label { display: block; font-size: 12px; margin-bottom: 6px; font-weight: bold; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #d9ddd7;
+      background: white;
+      padding: 12px;
+      min-width: 0;
+      border-radius: 0;
+    }
+    section { padding: 86px 0; }
+    .section-head { margin-bottom: 32px; }
+    .section-head h2 { font-size: clamp(30px, 4vw, 43px); margin: 7px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .property { border: 1px solid #e9e9e3; background: white; }
+    .property img { width: 100%; height: 235px; object-fit: cover; display: block; }
+    .property-body { padding: 20px; }
+    .tag {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--green2); font-weight: bold;
+    }
+    .property h3 { font-size: 23px; margin: 8px 0 3px; }
+    .location { font-size: 13px; color: var(--muted); }
+    .price { font-size: 22px; color: var(--green); font-weight: bold; margin: 14px 0 7px; }
+    .details { font-size: 12px; color: var(--muted); border-top: 1px solid #eee; padding-top: 12px; }
+    .property-actions { display: flex; gap: 8px; margin-top: 17px; }
+    .property-actions .btn { flex: 1; padding: 10px 7px; }
+    .property-actions .btn-outline { color: var(--green); border-color: var(--green); margin: 0; }
+    .empty { display: none; padding: 24px 0; color: var(--muted); }
+    .cream { background: var(--cream); }
+    .areas {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    .area {
+      min-height: 155px; display: flex; align-items: end; padding: 20px;
+      color: white; background: var(--green);
+      font-family: Georgia, serif; font-size: 23px;
+      border-bottom: 3px solid var(--gold);
+    }
+    .owner-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: start;
+    }
+    .owner-grid h2 { font-size: clamp(34px, 4vw, 46px); line-height: 1.15; }
+    .owner-grid p { color: var(--muted); }
+    form { display: grid; gap: 15px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .note { font-size: 11px; color: var(--muted); }
+    .contact-bar {
+      background: var(--green); color: white; padding: 34px 0;
+    }
+    .contact-inner {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    }
+    .contact-inner h2 { margin: 0; font-size: 29px; }
+    footer { background: #102b24; color: white; padding: 35px 0; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer p, footer a { color: #d2d9d2; font-size: 12px; }
+    .whatsapp {
+      position: fixed; bottom: 22px; right: 22px; z-index: 5;
+      background: #187c50; color: white; padding: 13px 18px;
+      border-radius: 30px; box-shadow: 0 5px 20px #0002; font-size: 13px;
+    }
+    @media (max-width: 850px) {
+      .search { grid-template-columns: repeat(2, 1fr); }
+      .properties { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .areas { grid-template-columns: repeat(2, 1fr); }
+      .owner-grid { gap: 28px; }
+      nav { gap: 12px; }
+    }
+    @media (max-width: 580px) {
+      .nav { padding: 17px 0; align-items: flex-start; flex-direction: column; }
+      nav { gap: 10px 17px; }
+      .hero { min-height: 490px; }
+      .btn-outline { margin: 10px 0 0; }
+      .search { grid-template-columns: 1fr; }
+      .properties, .owner-grid { grid-template-columns: 1fr; }
+      section { padding: 62px 0; }
+      .contact-inner { align-items: flex-start; flex-direction: column; }
+      .form-row { grid-template-columns: 1fr; }
+      .whatsapp { right: 12px; bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <strong>EWH</strong>
+      <span>EXCLUSIVE WORLD HOME</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#propiedades">Propiedades</a>
+      <a href="#zonas">Zonas</a>
+      <a href="#propietarios">Vende tu vivienda</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-content">
+      <div class="eyebrow">Inmobiliaria · Madrid</div>
+      <h1>Damos valor<br>a tu vivienda.</h1>
+      <p>Una forma exclusiva de comprar, vender y alquilar viviendas en las mejores zonas de Madrid.</p>
+      <a class="btn" href="#propiedades">Descubrir propiedades</a>
+      <a class="btn btn-outline" href="#propietarios">Valorar mi vivienda</a>
+    </div>
+  </section>
+
+  <div class="wrap search-area">
+    <form class="search" id="searchForm">
+      <div>
+        <label for="operation">Operación</label>
+        <select id="operation">
+          <option value="">Comprar o alquilar</option>
+          <option value="Venta">Comprar</option>
+          <option value="Alquiler">Alquilar</option>
+        </select>
+      </div>
+      <div>
+        <label for="zone">Zona</label>
+        <select id="zone">
+          <option value="">Todas las zonas</option>
+          <option>Salamanca</option>
+          <option>Retiro</option>
+          <option>Chamberí</option>
+          <option>Chamartín</option>
+        </select>
+      </div>
+      <div>
+        <label for="maxPrice">Precio máximo</label>
+        <select id="maxPrice">
+          <option value="">Sin límite</option>
+          <option value="500000">500.000 €</option>
+          <option value="800000">800.000 €</option>
+          <option value="1000000">1.000.000 €</option>
+          <option value="1500000">1.500.000 €</option>
+        </select>
+      </div>
+      <div>
+        <label for="bedrooms">Habitaciones mín.</label>
+        <select id="bedrooms">
+          <option value="">Cualquiera</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
+      </div>
+      <button class="btn" type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <section id="propiedades">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Selección EWH</div>
+        <h2>Propiedades destacadas</h2>
+        <p>Una selección de viviendas con personalidad en Madrid.</p>
+      </div>
+      <div class="properties" id="propertyList"></div>
+      <p class="empty" id="emptyMessage">No hay propiedades que coincidan. Prueba con otros filtros.</p>
+      <p class="note">Las viviendas mostradas son ejemplos de diseño. Sustitúyelas por inmuebles reales antes de publicar la web comercialmente.</p>
+    </div>
+  </section>
+
+  <section class="cream" id="zonas">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Madrid, barrio a barrio</div>
+        <h2>Conocemos cada zona</h2>
+        <p>Encuentra una vivienda en el barrio que mejor encaja contigo.</p>
+      </div>
+      <div class="areas">
+        <a class="area" href="#propiedades" data-zone="Salamanca">Salamanca</a>
+        <a class="area" href="#propiedades" data-zone="Retiro">Retiro</a>
+        <a class="area" href="#propiedades" data-zone="Chamberí">Chamberí</a>
+        <a class="area" href="#propiedades" data-zone="Chamartín">Chamartín</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="propietarios">
+    <div class="wrap owner-grid">
+      <div>
+        <div class="eyebrow">Propietarios</div>
+        <h2>Tu vivienda merece una estrategia a su altura.</h2>
+        <p>Cuéntanos sobre tu propiedad. Estudiaremos su ubicación y características para ayudarte a dar el siguiente paso.</p>
+        <p>Atención personalizada para vender o alquilar tu vivienda en Madrid.</p>
+      </div>
+      <form id="ownerForm">
+        <div class="form-row">
+          <div>
+            <label for="ownerName">Nombre</label>
+            <input id="ownerName" name="nombre" required placeholder="Tu nombre">
+          </div>
+          <div>
+            <label for="ownerPhone">Teléfono</label>
+            <input id="ownerPhone" name="telefono" type="tel" required placeholder="Tu teléfono">
+          </div>
+        </div>
+        <div>
+          <label for="ownerEmail">Correo electrónico</label>
+          <input id="ownerEmail" name="email" type="email" required placeholder="tu@email.com">
+        </div>
+        <div>
+          <label for="ownerOperation">¿Qué necesitas?</label>
+          <select id="ownerOperation" name="operacion">
+            <option>Vender mi vivienda</option>
+            <option>Alquilar mi vivienda</option>
+            <option>Solicitar una valoración</option>
+          </select>
+        </div>
+        <div>
+          <label for="ownerDetails">Zona y detalles de la propiedad</label>
+          <textarea id="ownerDetails" name="detalles" rows="4" placeholder="Barrio, metros, habitaciones..."></textarea>
+        </div>
+        <label style="font-weight:normal">
+          <input type="checkbox" required style="width:auto">
+          He leído la información de privacidad y acepto que contacten conmigo.
+        </label>
+        <button class="btn" type="submit">Preparar solicitud</button>
+        <p class="note">Prototipo: el formulario abrirá tu aplicación de correo. No almacena ni envía los datos a un servidor.</p>
+      </form>
+    </div>
+  </section>
+
+  <div class="contact-bar" id="contacto">
+    <div class="wrap contact-inner">
+      <div>
+        <div class="eyebrow">Hablemos</div>
+        <h2>Tu próximo paso empieza aquí.</h2>
+      </div>
+      <a class="btn" id="contactWhatsApp" href="#contacto">Contactar por WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <div class="brand"><strong>EWH</strong><span>EXCLUSIVE WORLD HOME</span></div>
+      <p>Damos valor a tu vivienda.</p>
+    </div>
+    <div>
+      <p>Madrid · Salamanca · Retiro · Chamberí · Chamartín</p>
+      <p>© <span id="year"></span> Exclusive World Home</p>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp" id="floatingWhatsApp" href="#contacto" aria-label="Contactar con EWH">WhatsApp ↗</a>
+
+<script>
+  // Sustituye este número por el WhatsApp de EWH, con prefijo de país.
+  // Ejemplo de formato español: 34600111222 (sin +, espacios ni guiones).
+  const WHATSAPP_NUMBER = "";
+
+  // Sustituye este correo por el correo comercial de EWH.
+  const CONTACT_EMAIL = "";
+
+  // Son propiedades de demostración. Sustitúyelas por inmuebles reales.
+  const properties = [
+    {
+      title: "Elegancia en Salamanca",
+      zone: "Salamanca", operation: "Venta", price: 740000,
+      bedrooms: 2, bathrooms: 2, area: 85,
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+      description: "Vivienda luminosa en una ubicación privilegiada."
+    },
+    {
+      title: "Luz junto al Retiro",
+      zone: "Retiro", operation: "Venta", price: 895000,
+      bedrooms: 3, bathrooms: 2, area: 112,
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
+      description: "Espacios amplios y diseño contemporáneo."
+    },
+    {
+      title: "Diseño en Chamberí",
+      zone: "Chamberí", operation: "Alquiler", price: 2200,
+      bedrooms: 2, bathrooms: 1, area: 78,
+      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      description: "Interiorismo cuidado en un barrio con encanto."
+    }
+  ];
+
+  const euro = new Intl.NumberFormat("es-ES", {
+    style: "currency", currency: "EUR", maximumFractionDigits: 0
+  });
+
+  function whatsappUrl(message) {
+    if (!WHATSAPP_NUMBER) return "#contacto";
+    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  }
+
+  function renderProperties(items) {
+    const list = document.getElementById("propertyList");
+    list.innerHTML = "";
+    document.getElementById("emptyMessage").style.display =
+      items.length ? "none" : "block";
+
+    items.forEach(p => {
+      const card = document.createElement("article");
+      card.className = "property";
+
+      const img = document.createElement("img");
+      img.src = p.image;
+      img.alt = p.title + " — fotografía ilustrativa";
+      img.loading = "lazy";
+
+      const body = document.createElement("div");
+      body.className = "property-body";
+
+      const tag = document.createElement("div");
+      tag.className = "tag";
+      tag.textContent = p.operation === "Venta" ? "En venta" : "En alquiler";
+
+      const title = document.createElement("h3");
+      title.textContent = p.title;
+
+      const location = document.createElement("div");
+      location.className = "location";
+      location.textContent = p.zone + " · Madrid";
+
+      const price = document.createElement("div");
+      price.className = "price";
+      price.textContent = euro.format(p.price) +
+        (p.operation === "Alquiler" ? " / mes" : "");
+
+      const details = document.createElement("div");
+      details.className = "details";
+      details.textContent = p.area + " m²  ·  " + p.bedrooms +
+        " habitaciones  ·  " + p.bathrooms + " baños";
+
+      const desc = document.createElement("p");
+      desc.textContent = p.description;
+      desc.style.fontSize = "13px";
+
+      const actions = document.createElement("div");
+      actions.className = "property-actions";
+
+      const ask = document.createElement("a");
+      ask.className = "btn";
+      ask.textContent = "Solicitar información";
+      ask.href = whatsappUrl("Hola, quiero información sobre " + p.title +
+        " en " + p.zone + ". Precio: " + euro.format(p.price) + ".");
+
+      if (WHATSAPP_NUMBER) {
+        ask.target = "_blank";
+        ask.rel = "noopener noreferrer";
+      } else {
+        ask.href = "#contacto";
+      }
+
+      const more = document.createElement("a");
+      more.className = "btn btn-outline";
+      more.textContent = "Consultar";
+      more.href = "#contacto";
+
+      actions.append(ask, more);
+      body.append(tag, title, location, price, details, desc, actions);
+      card.append(img, body);
+      list.append(card);
+    });
+  }
+
+  document.getElementById("searchForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const operation = document.getElementById("operation").value;
+    const zone = document.getElementById("zone").value;
+    const maxPrice = Number(document.getElementById("maxPrice").value) || Infinity;
+    const bedrooms = Number(document.getElementById("bedrooms").value) || 0;
+
+    const filtered = properties.filter(p =>
+      (!operation || p.operation === operation) &&
+      (!zone || p.zone === zone) &&
+      p.price <= maxPrice &&
+      p.bedrooms >= bedrooms
+    );
+
+    renderProperties(filtered);
+    document.getElementById("propiedades").scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.querySelectorAll("[data-zone]").forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("zone").value = link.dataset.zone;
+      document.getElementById("searchForm").requestSubmit();
+    });
+  });
+
+  document.getElementById("ownerForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!CONTACT_EMAIL) {
+      alert("El formulario está preparado. Configura CONTACT_EMAIL en el código para recibir solicitudes por correo.");
+      return;
+    }
+
+    const data = new FormData(event.currentTarget);
+    const subject = "Nueva solicitud inmobiliaria EWH";
+    const body = [...data.entries()]
+      .map(([key, value]) => key + ": " + value)
+      .join("\n");
+
+    window.location.href = "mailto:" + CONTACT_EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+  });
+
+  ["contactWhatsApp", "floatingWhatsApp"].forEach(id => {
+    const link = document.getElementById(id);
+    if (WHATSAPP_NUMBER) {
+      link.href = whatsappUrl("Hola, estoy interesado en los servicios de Exclusive World Home.");
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    } else {
+      link.href = "#contacto";
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        alert("Añade el número de WhatsApp de EWH en la variable WHATSAPP_NUMBER del código.");
+      });
+    }
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderProperties(properties);
+</script>
+</body>
+</html>
